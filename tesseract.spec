@@ -1,7 +1,7 @@
 Summary:	Tesseract Open Source OCR Engine
 Name:		tesseract
 Version:	3.02.02
-Release:	1
+Release:	2
 License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files//%{name}-%{version}.tar.gz
@@ -104,17 +104,28 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README
+%attr(755,root,root) %{_bindir}/ambiguous_words
+%attr(755,root,root) %{_bindir}/classifier_tester
+%attr(755,root,root) %{_bindir}/dawg2wordlist
+%attr(755,root,root) %{_bindir}/shapeclustering
 %attr(755,root,root) %{_bindir}/tesseract
+
 %dir %{_datadir}/tessdata
 %{_datadir}/tessdata/configs
 %{_datadir}/tessdata/tessconfigs
 %{_datadir}/tessdata/eng.*
+
 %{_mandir}/man1/cntraining.1*
 %{_mandir}/man1/combine_tessdata.1*
 %{_mandir}/man1/mftraining.1*
 %{_mandir}/man1/tesseract.1*
 %{_mandir}/man1/unicharset_extractor.1*
 %{_mandir}/man1/wordlist2dawg.1*
+%{_mandir}/man1/ambiguous_words.1*
+%{_mandir}/man1/dawg2wordlist.1*
+%{_mandir}/man1/shapeclustering.1*
+%{_mandir}/man5/unicharambigs.5*
+%{_mandir}/man5/unicharset.5*
 
 %files libs
 %defattr(644,root,root,755)
@@ -126,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libtesseract.so
 %{_libdir}/libtesseract.la
 %{_includedir}/%{name}
+%{_pkgconfigdir}/tesseract.pc
 
 %files trainer
 %defattr(644,root,root,755)
