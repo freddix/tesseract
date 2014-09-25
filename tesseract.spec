@@ -1,7 +1,7 @@
 Summary:	Tesseract Open Source OCR Engine
 Name:		tesseract
 Version:	3.02.02
-Release:	2
+Release:	3
 License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files//%{name}-%{version}.tar.gz
@@ -95,6 +95,8 @@ for l in deu deu-frak eng pol; do
 	gzip -dc $RPM_SOURCE_DIR/${l}.traineddata.gz > $RPM_BUILD_ROOT%{_datadir}/tessdata/${l}.traineddata
 done
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -135,7 +137,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtesseract.so
-%{_libdir}/libtesseract.la
 %{_includedir}/%{name}
 %{_pkgconfigdir}/tesseract.pc
 
